@@ -5,6 +5,6 @@
 
     <item
         android:id="@+id/menu_formulario_ok"
-        android:title="OK"
-        android:icon="@mipmap/ic_launcher"/>
+        android:icon="@drawable/ic_action_tick"
+        android:title="OK"/>
 </menu>

@@ -66,4 +66,24 @@ public class Aluno implements Serializable{
     public String toString() {
         return getId()+" - "+getNome();
     }
+
+    public boolean isNameValid(){
+        return nome != null && !nome.isEmpty();
+    }
+
+    public boolean isPhoneValid(){
+        return telefone != null && !telefone.isEmpty();
+    }
+
+    public boolean isAddressValid(){
+        return endereco != null && !endereco.isEmpty();
+    }
+
+    public boolean isSiteValid(){
+        return site != null && !site.isEmpty();
+    }
+
+    public boolean isValid(){
+        return isNameValid() && isPhoneValid() && isAddressValid() && isSiteValid();
+    }
 }

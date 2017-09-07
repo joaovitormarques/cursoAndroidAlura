@@ -36,6 +36,9 @@ public class ListaAlunosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_alunos);
         listaAlunos = (ListView) findViewById(R.id.lista_alunos);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle("Alunos");
 
         listaAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -46,9 +47,11 @@ public class FormularioActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intentCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                caminhoFoto = getExternalFilesDir(null)+"/"+ System.currentTimeMillis() +".jpg";
+                caminhoFoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg";
                 File arquivoFoto = new File(caminhoFoto);
-                intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(arquivoFoto));
+                Uri photoURI = FileProvider.getUriForFile(FormularioActivity.this, FormularioActivity.this.getApplicationContext().getPackageName() + ".my.package.name.provider", arquivoFoto);
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(intentCamera, CODIGO_CAMERA);
             }
         });

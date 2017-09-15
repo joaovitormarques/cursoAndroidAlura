@@ -3,4 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.joaov.listaalunos.ListaAlunosActivity">
 
+    <item
+        android:id="@+id/menu_enviar_notas"
+        android:title="Enviar notas"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_cloud_upload"/>
 </menu>

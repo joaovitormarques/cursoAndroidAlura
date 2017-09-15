@@ -1,0 +1,18 @@
+<alunos>
+    <aluno>
+        <id>1</id>
+        <nome>Joao Vitor</nome>
+        <endereco>São José dos Campos</endereco>
+        <telefone>12 9 8102 6869</telefone>
+        <site>www.google.com.br</site>
+        <nota>5.0</nota>
+    </aluno>
+    <aluno>
+        <id>2</id>
+        <nome>Daniel</nome>
+        <endereco>Campinas</endereco>
+        <telefone>11 1234 5678</telefone>
+        <site>www.guichevirtual.com.br</site>
+        <nota>4.5</nota>
+    </aluno>
+</alunos>

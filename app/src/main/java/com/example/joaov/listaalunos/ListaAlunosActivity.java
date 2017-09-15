@@ -4,11 +4,14 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.MenuItem;
 import android.widget.AdapterView;
@@ -24,12 +27,18 @@ import java.util.List;
 
 public class ListaAlunosActivity extends AppCompatActivity {
 
+    private static final int CODIGO_SMS = 012;
     private ListView listaAlunos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_alunos);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED){
+                requestPermissions(new String[] { Manifest.permission.RECEIVE_SMS } , CODIGO_SMS);
+            }
+        }
         listaAlunos = (ListView) findViewById(R.id.lista_alunos);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -62,12 +71,21 @@ public class ListaAlunosActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    private void carregaDados() {
-        AlunoDAO dao = new AlunoDAO(this);
-        List<Aluno> alunos = dao.buscaAlunos();
-        dao.close();
-        AlunosAdapter adapter = new AlunosAdapter(this, alunos);
-        listaAlunos.setAdapter(adapter);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_lista_alunos, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_enviar_notas:
+                new EnviaAlunosTask(this).execute();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -90,8 +108,6 @@ public class ListaAlunosActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
         MenuItem itemSMS = menu.add("Enviar SMS");
         Intent intentSMS = new Intent(Intent.ACTION_VIEW);
         intentSMS.setData(Uri.parse("sms:"+aluno.getTelefone()));
@@ -124,7 +140,13 @@ public class ListaAlunosActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
 
-
+    private void carregaDados() {
+        AlunoDAO dao = new AlunoDAO(this);
+        List<Aluno> alunos = dao.buscaAlunos();
+        dao.close();
+        AlunosAdapter adapter = new AlunosAdapter(this, alunos);
+        listaAlunos.setAdapter(adapter);
     }
 }

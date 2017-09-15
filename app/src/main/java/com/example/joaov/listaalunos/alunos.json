@@ -1,0 +1,24 @@
+{
+  "list":[
+    {
+      "aluno":[
+        {
+          "id":"1",
+          "nome":"Joao Vitor",
+          "endereco":"São José dos Campos",
+          "telefone":"12 9 8102 6869",
+          "site":"www.google.com.br",
+          "nota":"5.0"
+        },
+        {
+          "id":"2",
+          "nome":"Daniel",
+          "endereco":"Campinas",
+          "telefone":"11 1234 5678",
+          "site":"www.guichevirtual.com.br",
+          "nota":"4.5"
+        }
+      ]
+    }
+  ]
+}

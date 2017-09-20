@@ -1,12 +1,13 @@
 package com.example.joaov.listaalunos.modelo;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by joaovitor on 20/09/17.
  */
 
-public class Prova {
+public class Prova implements Serializable{
     private String materia;
     private String data;
     private List<String> topicos;

@@ -16,7 +16,7 @@ import android.view.View;
 
 import com.google.android.gms.maps.SupportMapFragment;
 
-class MapaActivity extends AppCompatActivity {
+public class MapaActivity extends AppCompatActivity {
 
     private static final int REQUEST_PERMISSOES = 1;
     private MapaFragment mapaFragment;
